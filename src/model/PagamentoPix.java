@@ -18,8 +18,9 @@ public class PagamentoPix extends Pagamento { // HERANÇA
         return codigoTransacao;
     }
 
-    public void processarPagamento() { //sobreescrita
+    public void processarPagamento() { //sobreescrita e polimorfismo
         System.out.println("Processando pagamento via PIX...");
+        System.out.println("Pagamento confirmado!!!");
     }
 
     public void setCodigoTransacao(String next) {

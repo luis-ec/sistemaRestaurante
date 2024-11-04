@@ -38,9 +38,9 @@ public class Pagamento {
     public Pagamento(int idPagamento, LocalDate data, double valorTotal) {
     }
 
+
     public void processarPagamento() {
         System.out.println("Processando pagamento...");
-        System.out.println("Pagamento confirmado!");
 
     }
 }

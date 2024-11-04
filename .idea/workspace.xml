@@ -4,7 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="90b4d8f1-6144-4aab-b085-fb8f47f6e958" name="Changes" comment="" />
+    <list default="true" id="90b4d8f1-6144-4aab-b085-fb8f47f6e958" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SistemaRestaurante/model/Pagamento.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SistemaRestaurante/model/Pagamento.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SistemaRestaurante/model/PagamentoCartao.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SistemaRestaurante/model/PagamentoCartao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SistemaRestaurante/model/PagamentoPix.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SistemaRestaurante/model/PagamentoPix.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SistemaRestaurante/view/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SistemaRestaurante/view/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Pagamento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Pagamento.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/PagamentoCartao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/PagamentoCartao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/PagamentoPix.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/PagamentoPix.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Main.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -72,7 +82,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1730707240051</updated>
-      <workItem from="1730707242111" duration="4798000" />
+      <workItem from="1730707242111" duration="7557000" />
     </task>
     <servers />
   </component>

@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Main {
+
     private static List<Cliente> clientes = new ArrayList<>();
     private static List<Mesa> mesas = new ArrayList<>();
     private static List<Ingrediente> ingredientes = new ArrayList<>();
@@ -29,49 +30,98 @@ public class Main {
             System.out.println("8. Listar Ingredientes");
             System.out.println("9. Listar Cardápio");
             System.out.println("10. Listar Pedidos");
+            System.out.println("11. Pagar Pedido");
             System.out.println("0. Sair");
             System.out.print("Escolha uma opção: ");
             opcao = scanner.nextInt();
             scanner.nextLine();
 
             switch (opcao) {
-                case 1:
-                    adicionarCliente(scanner);
-                    break;
-                case 2:
-                    adicionarMesa(scanner);
-                    break;
-                case 3:
-                    adicionarIngrediente(scanner);
-                    break;
-                case 4:
-                    adicionarPrato(scanner);
-                    break;
-                case 5:
-                    fazerPedido(scanner);
-                    break;
-                case 6:
-                    listarClientes();
-                    break;
-                case 7:
-                    listarMesas();
-                    break;
-                case 8:
-                    listarIngredientes();
-                    break;
-                case 9:
-                    listarCardapio();
-                    break;
-                case 10:
-                    listarPedidos();
-                    break;
-                case 0:
-                    System.out.println("Saindo...");
-                    break;
-                default:
-                    System.out.println("Opção inválida. Tente novamente.");
+                case 1 -> adicionarCliente(scanner);
+                case 2 -> adicionarMesa(scanner);
+                case 3 -> adicionarIngrediente(scanner);
+                case 4 -> adicionarPrato(scanner);
+                case 5 -> fazerPedido(scanner);
+                case 6 -> listarClientes();
+                case 7 -> listarMesas();
+                case 8 -> listarIngredientes();
+                case 9 -> listarCardapio();
+                case 10 -> listarPedidos();
+                case 11 -> pagarPedido(scanner);
+                case 0 -> System.out.println("Saindo...");
+                default -> System.out.println("Opção inválida. Tente novamente.");
             }
         } while (opcao != 0);
+    }
+
+    private static void listarPedidos() {
+        if (pedidos.isEmpty()) {
+            System.out.println("Nenhum pedido registrado.");
+            return;
+        }
+        System.out.println("Lista de Pedidos:");
+        for (Pedido pedido : pedidos) {
+            System.out.println("Cliente: " + pedido.getCliente().getNome());
+            System.out.println("Mesa: " + pedido.getMesa().getId_mesa());
+            System.out.println("Prato: " + pedido.getCardapio().getNome_prato());
+            if (pedido.getPagamento() instanceof PagamentoCartao) {
+                System.out.println("Pagamento: Cartão");
+                System.out.println("Número do Cartão: " + ((PagamentoCartao) pedido.getPagamento()).getNumeroCartao());
+            } else if (pedido.getPagamento() instanceof PagamentoPix) {
+                System.out.println("Pagamento: Pix");
+                System.out.println("Código da Transação: " + ((PagamentoPix) pedido.getPagamento()).getCodigoTransacao());
+            }
+            System.out.println("----------");
+        }
+    }
+
+    private static void pagarPedido(Scanner scanner) {
+        System.out.print("Digite o nome do cliente para pagar o pedido: ");
+        String nomeCliente = scanner.nextLine();
+        Pedido pedidoParaPagar = null;
+        for (Pedido pedido : pedidos) {
+            if (pedido.getCliente().getNome().equalsIgnoreCase(nomeCliente)) {
+                pedidoParaPagar = pedido;
+                break;
+            }
+        }
+
+        if (pedidoParaPagar == null) {
+            System.out.println("Pedido não encontrado para o cliente especificado.");
+            return;
+        }
+
+        System.out.println("Escolha o método de pagamento:");
+        System.out.println("1. Cartão");
+        System.out.println("2. Pix");
+        int metodoPagamento = scanner.nextInt();
+        scanner.nextLine();
+
+        switch (metodoPagamento) {
+            case 1 -> {
+                System.out.print("Digite o número do cartão: ");
+                String numeroCartao = scanner.nextLine();
+                PagamentoCartao pagamentoCartao = new PagamentoCartao();
+                pagamentoCartao.setNumeroCartao(numeroCartao);
+                pedidoParaPagar.setPagamento(pagamentoCartao);
+                pagamentoCartao.processarPagamento();
+            }
+            case 2 -> {
+                System.out.print("Digite o código da transação Pix: ");
+                String codigoTransacao = scanner.nextLine();
+                PagamentoPix pagamentoPix = new PagamentoPix();
+                pagamentoPix.setCodigoTransacao(codigoTransacao);
+                pedidoParaPagar.setPagamento(pagamentoPix);
+                pagamentoPix.processarPagamento();
+            }
+            default -> {
+                System.out.println("Método de pagamento inválido.");
+                return;
+            }
+        }
+
+        pedidos.remove(pedidoParaPagar);
+        System.out.println("Pedido pago e removido do sistema com sucesso.");
     }
 
     private static void adicionarCliente(Scanner scanner) {
@@ -212,30 +262,6 @@ public class Main {
             for (Cardapio p : cardapios) {
                 System.out.println("- " + p.getNome_prato() + ": " + p.getDescricao_prato() + " - R$" + p.getValor_prato());
             }
-        }
-    }
-
-    private static void listarPedidos() {
-        if (pedidos.isEmpty()) {
-            System.out.println("Nenhum pedido registrado.");
-            return;
-        }
-
-        System.out.println("Lista de Pedidos:");
-        for (Pedido pedido : pedidos) {
-            System.out.println("Cliente: " + pedido.getCliente().getNome());
-            System.out.println("Mesa: " + pedido.getMesa().getId_mesa());
-            System.out.println("Prato: " + pedido.getCardapio().getNome_prato());
-
-            if (pedido.getPagamento() instanceof PagamentoCartao) {
-                System.out.println("Pagamento: Cartão");
-                System.out.println("Número do Cartão: " + ((PagamentoCartao) pedido.getPagamento()).getNumeroCartao());
-            } else if (pedido.getPagamento() instanceof PagamentoPix) {
-                System.out.println("Pagamento: Pix");
-                System.out.println("Código da Transação: " + ((PagamentoPix) pedido.getPagamento()).getCodigoTransacao());
-            }
-
-            System.out.println("----------");
         }
     }
 }
