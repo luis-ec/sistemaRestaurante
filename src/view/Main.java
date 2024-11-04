@@ -28,6 +28,7 @@ public class Main {
             System.out.println("7. Listar Mesas");
             System.out.println("8. Listar Ingredientes");
             System.out.println("9. Listar Cardápio");
+            System.out.println("10. Listar Pedidos");
             System.out.println("0. Sair");
             System.out.print("Escolha uma opção: ");
             opcao = scanner.nextInt();
@@ -60,6 +61,9 @@ public class Main {
                     break;
                 case 9:
                     listarCardapio();
+                    break;
+                case 10:
+                    listarPedidos();
                     break;
                 case 0:
                     System.out.println("Saindo...");
@@ -208,6 +212,30 @@ public class Main {
             for (Cardapio p : cardapios) {
                 System.out.println("- " + p.getNome_prato() + ": " + p.getDescricao_prato() + " - R$" + p.getValor_prato());
             }
+        }
+    }
+
+    private static void listarPedidos() {
+        if (pedidos.isEmpty()) {
+            System.out.println("Nenhum pedido registrado.");
+            return;
+        }
+
+        System.out.println("Lista de Pedidos:");
+        for (Pedido pedido : pedidos) {
+            System.out.println("Cliente: " + pedido.getCliente().getNome());
+            System.out.println("Mesa: " + pedido.getMesa().getId_mesa());
+            System.out.println("Prato: " + pedido.getCardapio().getNome_prato());
+
+            if (pedido.getPagamento() instanceof PagamentoCartao) {
+                System.out.println("Pagamento: Cartão");
+                System.out.println("Número do Cartão: " + ((PagamentoCartao) pedido.getPagamento()).getNumeroCartao());
+            } else if (pedido.getPagamento() instanceof PagamentoPix) {
+                System.out.println("Pagamento: Pix");
+                System.out.println("Código da Transação: " + ((PagamentoPix) pedido.getPagamento()).getCodigoTransacao());
+            }
+
+            System.out.println("----------");
         }
     }
 }
