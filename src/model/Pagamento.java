@@ -6,12 +6,10 @@ public class Pagamento {
     private int id_pagamento;
     private LocalDate data_pagamento;
     private double valorTotal ;
-    public enum tipoPagamento{
-        PIX,
-        CARTÃO,
-        DINHEIRO
+
+    public Pagamento() {
+
     }
-    private tipoPagamento tipoPagamento;
 
     public int getId_pagamento() {
         return id_pagamento;
@@ -37,11 +35,12 @@ public class Pagamento {
         this.valorTotal = valorTotal;
     }
 
-    public Pagamento.tipoPagamento getTipoPagamento() {
-        return tipoPagamento;
+    public Pagamento(int idPagamento, LocalDate data, double valorTotal) {
     }
 
-    public void setTipoPagamento(Pagamento.tipoPagamento tipoPagamento) {
-        this.tipoPagamento = tipoPagamento;
+    public void processarPagamento() {
+        System.out.println("Processando pagamento...");
+        System.out.println("Pagamento confirmado!");
+
     }
 }
