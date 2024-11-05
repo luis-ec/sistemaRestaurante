@@ -1,0 +1,14 @@
+Projeto desenvolvido pela equipe: Fred William Melo Brooman,  
+                                  João Mateus de Melo Farias, 
+                                  João Vitor Coutinho da Silva, 
+                                  Luís Eduardo Cassimiro da Silva e 
+                                  Yálex Guilherme Lolaia da Silva.
+                                  
+
+Um sistema básico de gerenciamento de um restaurante, podendo gerenciar mesas, clientes, ingredientes e pratos e fazer pedidos. 
+OBS: Usamos uma estrutura de listas para armazenar os dados (temporáriamente) tentando simular um banco de dados. 
+
+
+ 
+
+

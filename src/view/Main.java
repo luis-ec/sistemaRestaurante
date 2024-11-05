@@ -20,6 +20,7 @@ public class Main {
         int opcao;
 
         do {
+            System.out.println(" ");
             System.out.println("1. Adicionar Cliente");
             System.out.println("2. Adicionar Mesa");
             System.out.println("3. Adicionar Ingrediente");
@@ -94,6 +95,7 @@ public class Main {
         System.out.println("Escolha o método de pagamento:");
         System.out.println("1. Cartão");
         System.out.println("2. Pix");
+        System.out.println("3. Dinheiro");
         int metodoPagamento = scanner.nextInt();
         scanner.nextLine();
 
@@ -113,6 +115,11 @@ public class Main {
                 pagamentoPix.setCodigoTransacao(codigoTransacao);
                 pedidoParaPagar.setPagamento(pagamentoPix);
                 pagamentoPix.processarPagamento();
+            }
+            case 3 -> {
+                Pagamento pagamentoDinheiro = new Pagamento();
+                    pagamentoDinheiro.processarPagamento();
+                break;
             }
             default -> {
                 System.out.println("Método de pagamento inválido.");
@@ -144,8 +151,13 @@ public class Main {
 
     private static void adicionarIngrediente(Scanner scanner) {
         Ingrediente ingrediente = new Ingrediente();
+        System.out.print("Digite o id do ingrediente: ");
+        ingrediente.setId_ingrediente(scanner.nextInt());
+        scanner.nextLine();
         System.out.print("Digite o nome do ingrediente: ");
         ingrediente.setNome_ingrediente(scanner.nextLine());
+        System.out.print("Digite a quantidade: ");
+        ingrediente.setQuantidade_ingrediente(scanner.nextInt());
         ingredientes.add(ingrediente);
         System.out.println("Ingrediente adicionado!");
     }
@@ -249,7 +261,7 @@ public class Main {
         } else {
             System.out.println("Ingredientes:");
             for (Ingrediente i : ingredientes) {
-                System.out.println("- " + i.getNome_ingrediente());
+                System.out.println("- " + "ID: " + i.getId_ingrediente() + " " + "Nome: " + i.getNome_ingrediente() + " " + "Quantidade: " + i.getQuantidade_ingrediente());
             }
         }
     }
